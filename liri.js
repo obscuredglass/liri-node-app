@@ -42,6 +42,14 @@ case "do-what-it-says":
 }
 }
 
+function concertInfo(userQuery){
+  var queryUrl = "https://rest.bandsintown.com/artists/" + userQuery + "/events?app_id=codingbootcamp";
+  request(queryUrl, function(error, response, body){
+
+  };
+
+
+
 function moviethis() {
 
   var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
