@@ -41,3 +41,43 @@ case "do-what-it-says":
   break;
 }
 }
+
+function moviethis() {
+
+  var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
+
+  request(queryUrl, function (error, response, body) {
+
+    if (!error && response.stausCode === 200) {
+      var movieData = JSON.parse(body);
+      var queryUrlReturn =
+      "Title: " + movieData.Title + "\n" +
+      "Year: " + movieData.Year + "\n" +
+      "IMDB Ration: " + movieData.Ratings[0].Value + 
+      "\n"
+      "Rotten Tomatoes Rating: " + movieData.Rating[1].Value + "\n" +
+      "Origin COuntry: " + movieData.Country + "\n" +
+      "Plot: " + movieData.Plot + "\n" +
+      "Actors: " + movieData.Actors + "\n"
+
+
+
+    }
+
+
+
+
+  }
+  
+  
+  
+  
+  )
+
+
+
+
+
+
+
+}
