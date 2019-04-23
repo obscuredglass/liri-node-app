@@ -51,6 +51,7 @@ function concertThis() {
   var queryUrl = "https://rest.bandsintown.com/artists/" + userQuery + "/events?app_id=codingbootcamp";
     axios.get(queryUrl).then(
       function (response) {
+        // console.log(response.data[0]);
 
         if (response.data.length === 0) {
           return console.log("no results found");
@@ -59,7 +60,7 @@ function concertThis() {
         console.log("===============");
         console.log("Name of the venue " + response.data[0].venue.name + "\r\n");
         console.log("Venue location: " + response.data[0].venue.city + "\r\n");
-        console.log("Date of event: ") + moment(response.data[0].datetime).format("MM-DD-YYYY");
+        console.log("Date of event: ") + moment(response.data[0].datetime).format("MM/DD/YYYY");
 
         var concertLog = "====Concert info=====" + "\nName of the band" + userQuery
 
@@ -95,25 +96,27 @@ function spotifyThisSong() {
 // omdb
 
 function movieThis() {
+  if (userQuery === "undefined") {
+    userQuery = "Mr. Nobody"
+  }
 
-  axios.get("https://www.omdbapi.com/?t=" + userQuery + "&apikey=trilogy").then(
-
-      function(reponse) {
+  axios.get(
+    "https://www.omdbapi.com/?t=" + userQuery + "&apikey=trilogy")
+    .then(function(reponse) {
         var movieData = reponse.data;
-        console.log(movieData);
+        
         var queryUrlReturn =
           "Title: " + movieData.Title + "\n" +
           "Year: " + movieData.Year + "\n" +
-          "IMDB Ration: " + movieData.Ratings[0].Value + "\n" +
           "Rotten Tomatoes Rating: " + movieData.Ratings[1].Value + "\n" +
           "Origin Contry: " + movieData.Country + "\n" +
           "Plot: " + movieData.Plot + "\n" +
           "Actors: " + movieData.Actors + "\n"
-        // console.log(queryUrlReturn);
+        console.log(queryUrlReturn);
       }
   )
     
-
+// function doWhatItSays
   
 
 };
