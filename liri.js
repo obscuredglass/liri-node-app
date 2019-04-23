@@ -49,20 +49,23 @@ switch (userInput) {
 function concertThis() {
   // var artist = 
   var queryUrl = "https://rest.bandsintown.com/artists/" + userQuery + "/events?app_id=codingbootcamp";
-  request(queryUrl, function (error, response, body) {
     axios.get(queryUrl).then(
-      function (reponse) {
+      function (response) {
+
+        if (response.data.length === 0) {
+          return console.log("no results found");
+        }
 
         console.log("===============");
-        console.log("Name of the venue" + response.data[0].venue.name + "\r\n");
-        console.log("Venue location: " + reponse.data[0].venue.city + "\r\n");
-        console.log("Date of event: ") + moment(reponse.data[0].datetime).formate("MM-DD-YYYY");
+        console.log("Name of the venue " + response.data[0].venue.name + "\r\n");
+        console.log("Venue location: " + response.data[0].venue.city + "\r\n");
+        console.log("Date of event: ") + moment(response.data[0].datetime).format("MM-DD-YYYY");
 
-        var concertLog = "====Concert info=====" + "\nName of the band" + artist
+        var concertLog = "====Concert info=====" + "\nName of the band" + userQuery
 
       }
     )
-  })
+
 }
 
 // spotify
@@ -93,25 +96,24 @@ function spotifyThisSong() {
 
 function movieThis() {
 
-  var queryURL = "https://www.omdbapi.com/?t=" + userQuery + "&apikey=trilogy";
+  axios.get("https://www.omdbapi.com/?t=" + userQuery + "&apikey=trilogy").then(
 
-  request(queryUrl, function (error, response, body) {
-
-      if (!error && response.stausCode === 200) {
-        var movieData = JSON.parse(body);
+      function(reponse) {
+        var movieData = reponse.data;
+        console.log(movieData);
         var queryUrlReturn =
           "Title: " + movieData.Title + "\n" +
           "Year: " + movieData.Year + "\n" +
-          "IMDB Ration: " + movieData.Ratings[0].Value +
-          "\n" +
-          "Rotten Tomatoes Rating: " + movieData.Rating[1].Value + "\n" +
+          "IMDB Ration: " + movieData.Ratings[0].Value + "\n" +
+          "Rotten Tomatoes Rating: " + movieData.Ratings[1].Value + "\n" +
           "Origin Contry: " + movieData.Country + "\n" +
           "Plot: " + movieData.Plot + "\n" +
           "Actors: " + movieData.Actors + "\n"
-
+        // console.log(queryUrlReturn);
       }
-    }
-
   )
+    
+
+  
 
 };
