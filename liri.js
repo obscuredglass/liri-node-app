@@ -115,8 +115,27 @@ function movieThis() {
         console.log(queryUrlReturn);
       }
   )
-    
+    } 
 // function doWhatItSays
-  
+function doWhatItSays() {
+  fs.readFile("random.txt", "utf8", function (error, data) {
+    var dataArr = data.split(",");
+    userInput = dataArr[0];
+    userQuery = dataArr[1];
+    if (userInput === "spotify-this-song") {
+      spotifyThisSong();
+ 
+    } else if (userInput === "movie-this") {
+      movieThis();
+ 
+    } else if (userInput === "concert-this") {
+      console.log(userQuery)
+      concertThis();
+ 
+    } else {
+      return console.log(error)
+    }
+  })
+ 
 
 };
