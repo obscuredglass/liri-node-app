@@ -4,7 +4,7 @@ This Node application gives you the ability to do a few things. First you can ty
 
 ### Technologies Used
 1. Javascript
-2. Node
+2. Node.js
 3. API keys from OMDB, Bandsintown and Spotify
 
 
